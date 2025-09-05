@@ -22,6 +22,8 @@ pub struct Theme {
     pub background: [f32; 3],
     pub polybar_background: [f32; 3],
     pub polybar_foreground: [f32; 3],
+    pub chrome_background: [f32; 3],
+    pub chrome_foreground: [f32; 3],
     pub imagepath: String,
 }
 

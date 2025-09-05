@@ -18,6 +18,8 @@ mod generator;
 use crate::generator::generate_colors;
 mod apply;
 use crate::apply::apply_theme;
+mod utils;
+
 
 fn main() -> eframe::Result {
     env_logger::init(); // Log to stderr (if you run with `RUST_LOG=debug`).
@@ -27,7 +29,6 @@ fn main() -> eframe::Result {
     };
     
 
-    //Load from memory eventually
     let data = load();
 
     eframe::run_native(
@@ -188,25 +189,6 @@ impl eframe::App for AppData {
     }
 }
 
-
-fn rgb_u8_to_f32(rgb: [u8; 3]) -> [f32; 3] {
-    println!("{},{},{}", rgb[0], rgb[1], rgb[2]);
-    [
-        (rgb[0] as f32 / 255.0).powf(2.2),
-        (rgb[1] as f32 / 255.0).powf(2.2),
-        (rgb[2] as f32 / 255.0).powf(2.2),
-    ]
-}
-
-
-fn rgb_f32_to_u8(rgb: [f32; 3]) -> [u8; 3] {
-    [
-        (rgb[0].powf(1.0/2.2) * 255.0).round() as u8,
-        (rgb[1].powf(1.0/2.2) * 255.0).round() as u8,
-        (rgb[2].powf(1.0/2.2) * 255.0).round() as u8,
-    ]
-}
-
     
 fn load() -> AppData{
     match load_from_file(){
@@ -279,6 +261,8 @@ fn new_theme(name: String) -> Theme{
         background: [0.0, 0.0, 0.0],
         polybar_background: [0.0, 0.0, 0.0],
         polybar_foreground: [0.0, 0.0, 0.0],
+        chrome_background: [0.0, 0.0, 0.0],
+        chrome_foreground: [0.0, 0.0, 0.0],
         imagepath: "".to_string(),
     };
     empty.name = name;
